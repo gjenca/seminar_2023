@@ -1,0 +1,90 @@
+\documentclass{article}
+\def\documentlanguage{english}
+\usepackage[all,pdf,2cell]{xy}\UseAllTwocells\SilentMatrices
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\newcategory}[1]{\expandafter\newcommand\csname #1\endcsname{\mathbf{#1}}}
+\newcategory{PosInv}
+\newcategory{SupInv}
+\begin{document}
+
+\section{The objects}
+
+An involution on a poset $P$ is an antitone selfmap $x\mapsto x'$
+such that $x''=x$. A poset with involution is called an {\em involutive poset}.
+
+Let $P$ be an involutive poset.
+\begin{itemize}
+\item We write $D(P)$ for the set of all order ideals/downsets/lower sets of $P$.
+\item The orthogonality relation $\perp$ on $P$ is given by the rule
+	$$x\perp y\Leftrightarrow x\leq y'$$
+Note that $\perp$ is symmetric.
+\item For a subset $X$ of $P$, we write $X'=\{x':x\in X\}$.
+\item For a subset $X$ of $P$ and $y\in P$, we write $y\leq X$ to express the fact that $y$ is a lower bound of $X$; similarly for upped bounds.
+\item The set of all lower bounds of $X$ is denoted by $X^\downarrow$, $X^\uparrow$
+	are all upper bounds of $X$.
+\item The \emph{orthoclosure} of a subset $X$ of $P$ is the set
+	$$X^\perp=\{y\in P:(\forall x\in X)x\perp y\}.$$
+	Note that $X^\perp=X'^\downarrow$. In particular, $X^\perp$ is a lower set of $P$.
+\item $I\mapsto I^{\perp\perp}$ is a closure operator on $D(P)$.
+\item A lower set $I$ of $P$ is said to be \emph{orthoclosed} iff $I=I^{\perp\perp}$.
+\end{itemize}
+
+\begin{lemma}
+Let $P$ be an involutive poset. For every $I\in D(P)$ 
+$I^\uparrow=(I^\perp)'$
+\end{lemma}
+\begin{proof}
+$x\in I^\uparrow$ iff $x\geq I$ iff $x'\leq I'$ iff $x'\in (I')^\downarrow=I^\perp$ iff $x\in (I^\perp)'$.
+\end{proof}
+
+\section{The adjunction}
+
+The categories are
+\begin{itemize}
+	\item $\PosInv$: objects are involutive posets and morphisms are monotone maps preserving the involution.
+	\item $\SupInv$: objects are involutive suplattices and morphisms preserve all joins and involution.
+\end{itemize}
+
+There is an obviously defined forgetful functor $G\colon\SupInv\to\PosInv$.
+For an involutive  poset $P$, we write $F(P)$ for the set of all orthoclosed lower sets of $P$.
+It is easy to see that $I\mapsto I^\perp$ is an involution on $F(P)$. Moreover,
+for every element $x$ of $P$, $(x^\downarrow)\perp=(x')^\downarrow$.
+Thus, there is a $\PosInv$ morphism $\downarrow\colon P\to GF(P)$ that takes every
+element $x$ to its principal downset
+$$
+\downarrow(x)=\{y\in P:y\leq x\}
+$$
+\begin{theorem}
+Let $A$ be an object of $\PosInv$ and $B$ an object of $\SupInv$.
+For every morphism $f\colon A\to G(B)$ there if a unique $\widehat f\colon F(A)\to B$ 
+such that
+$$
+\xymatrix{
+GF(A)
+	\ar[r]^{G(\widehat f)}
+&
+G(B)
+\\
+A
+	\ar[u]^{\downarrow}
+	\ar[ru]_{f}
+}
+$$
+commutes.
+
+Let us prove that $\widehat f$ is unique.
+\end{theorem}
+
+
+
+
+
+\end{document}
