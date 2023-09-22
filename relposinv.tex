@@ -1,0 +1,74 @@
+\documentclass{article}
+% vim: set indentexpr=
+\def\documentlanguage{english}
+\usepackage[all,pdf,2cell]{xy}\UseAllTwocells\SilentMatrices
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newcommand{\newcategory}[1]{\expandafter\newcommand\csname #1\endcsname{\mathbf{#1}}}
+\newcategory{RelPosInv}
+\newcategory{RelPos}
+\newcategory{PosInv}
+\newcategory{Pos}
+\newcategory{Sup}
+\begin{document}
+\title{What we know about non-quantum things`}
+\section{The categories}
+\begin{itemize}
+\item $\Pos$ is the category of posets and monotone maps.
+\item $\RelPos$ is the category of posets and monotone relations.
+\item $\PosInv$ is the category of posets equipped with an antitone involution and involution preserving maps.
+\item $\RelPosInv$ is the category of posets equipped with an antitone involution and monotone relations. 
+\end{itemize}
+
+\section{$\Pos$}
+
+\begin{itemize}
+\item $\Pos$ is cartesian closed.
+\item There is a functor $~^{op}\colon\Pos\to\Pos$ that takes a poset to an opposite poset.
+\item There is a monad $D\colon\Pos\to\Pos$ that takes every poset to its poset of downsets ordered by inclusion.
+\item $\Pos^D\simeq\Sup$ -- the Eilenberg-Moore category.
+\end{itemize}
+
+\section{$\RelPos$}
+
+\begin{itemize}
+\item $\RelPos$ is a compact category.
+\item The dual object is the dual poset, which is in this context denoted by $~^*$.
+\item $\RelPos$ is $\Pos$-enriched.
+\item $\RelPos\simeq\Pos_D$ -- the Kleisli category.
+\end{itemize}
+
+\section{$\PosInv$}
+\begin{itemize}
+\item The objects of $\PosInv$ can be represented as isomorphisms $'\colon P\to P^{op}$.
+\item The morphisms are then commutative squares.
+\item $\PosInv$ is cartesian closed.\footnote{What was the exponential object? I forgot.}
+\item The forgetful functor $U\colon\Pos\to\PosInv$ is both left and right adjoint.
+\item The left adjoint to $U$ is $P\mapsto D(P)\oplus(D(P))^{op}$, where $\oplus$ is the coproduct in $\Pos$.
+\item The right adjoint to $U$ is $P\mapsto D(P)\times(D(P))^{op}$.
+\end{itemize}
+
+\section{$\RelPosInv$}
+\begin{itemize}
+\item The objects may be represented as $\RelPos$-isomorphisms $P\to P^*$, morphisms remain the same.
+\item The contravariance of $~^*$ then gives us a dagger: if $'\colon P\to P^*$, $'\colon Q\to Q^*$ are 
+objects of $\RelPosInv$ and $f\colon P\to Q$ is a morphism (a monotone relation), then
+$f^\dag\colon Q\to P$ is just $(')^{-1}\circ f^* \circ '$.
+\item This is a dagger-compact category.
+\item Effect algebras are certain dagger-Frobenius algebras in $\RelPosInv$.
+\footnote{This was the original motivation to look at $\RelPosInv$}.
+\item There is a chain of adjunctions $\RelPos\leftrightarrow\Pos\leftrightarrow\PosInv$,
+inducing a monad $T$ given by $T(P)=D(P)\times (D(P))^{op}$ on $\PosInv$.
+\item $\PosInv_T\simeq\RelPosInv$
+\item $\PosInv^T\simeq\Sup$
+
+\end{itemize}
+\end{document}
+
